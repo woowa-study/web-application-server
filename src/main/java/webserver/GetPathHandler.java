@@ -13,6 +13,7 @@ public class GetPathHandler implements PathHandler {
         pathHandlersMap.put("/", new GetDefaultPathHandler());
         pathHandlersMap.put("/index.html", new GetStaticResourceHandler());
         pathHandlersMap.put("/user/form.html", new GetStaticResourceHandler());
+        pathHandlersMap.put("/user/login.html", new GetStaticResourceHandler());
     }
 
     @Override

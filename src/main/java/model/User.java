@@ -32,6 +32,9 @@ public class User {
         return email;
     }
 
+    public boolean matchPassword(User loginRequestUser) {
+        return this.password.equals(loginRequestUser.getPassword());
+    }
     @Override
     public String toString() {
         return "User [userId=" + userId + ", password=" + password + ", name=" + name + ", email=" + email + "]";

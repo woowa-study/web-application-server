@@ -1,5 +1,6 @@
 package webserver;
 
+import post.PostSignInPathHandler;
 import post.PostSignUpPathHandler;
 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ public class PostPathHandler implements PathHandler{
     private static final Map<String, PathHandleStrategy> pathHandlersMap = new HashMap<>();
     static {
         pathHandlersMap.put("/user/create", new PostSignUpPathHandler());
+        pathHandlersMap.put("/user/login", new PostSignInPathHandler());
     }
     @Override
     public PathHandleStrategy getMatchingPathHandleStrategy(String requestUrl) {
