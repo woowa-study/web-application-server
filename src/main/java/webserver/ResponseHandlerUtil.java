@@ -29,6 +29,28 @@ public class ResponseHandlerUtil {
         }
     }
 
+    public static void responseLoginSuccess302Header(DataOutputStream dos, String redirectUrl) {
+        try {
+            dos.writeBytes("HTTP/1.1 302 Found \r\n");
+            dos.writeBytes("Location: /" + redirectUrl + "\r\n");
+            dos.writeBytes("Set-Cookie: logined=true");
+            dos.writeBytes("\r\n");
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
+    }
+
+    public static void responseLoginFailed302Header(DataOutputStream dos, String redirectUrl) {
+        try {
+            dos.writeBytes("HTTP/1.1 302 Found \r\n");
+            dos.writeBytes("Location: /" + redirectUrl + "\r\n");
+            dos.writeBytes("Set-Cookie: logined=false");
+            dos.writeBytes("\r\n");
+        } catch (IOException e) {
+            log.error(e.getMessage());
+        }
+    }
+
     public static void response404Header(DataOutputStream dos) {
         try {
             dos.writeBytes("HTTP/1.1 404 Not Found \r\n");
