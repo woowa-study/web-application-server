@@ -17,6 +17,7 @@ public class HttpRequestDto {
     private HttpMethod httpMethod;
     private String requestUrl;
     private byte[] body;
+    private Map<String, String> cookies;
     private Integer contentLength;
     private Map<String, String> data;
 
@@ -29,6 +30,9 @@ public class HttpRequestDto {
             line = br.readLine();
             if(line.contains("Content-Length")) {
                 this.contentLength = Integer.parseInt(line.split(" ")[1]);
+            }
+            if(line.contains("Cookie")) {
+                this.cookies = HttpRequestUtils.parseCookies(line);
             }
         }
         if(this.httpMethod == HttpMethod.POST) {
@@ -61,4 +65,7 @@ public class HttpRequestDto {
         return data;
     }
 
+    public Map<String, String> getCookies() {
+        return cookies;
+    }
 }
