@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 
 import java.util.Map;
 
+import domain.HttpMethod;
 import org.junit.Test;
 
 import util.HttpRequestUtils.Pair;
@@ -69,5 +70,19 @@ public class HttpRequestUtilsTest {
         String header = "Content-Length: 59";
         Pair pair = HttpRequestUtils.parseHeader(header);
         assertThat(pair, is(new Pair("Content-Length", "59")));
+    }
+
+    @Test
+    public void getMethod() {
+        String requestLine = "GET /index.html HTTP/1.1";
+        HttpMethod httpMethod = HttpRequestUtils.getMethod(requestLine);
+        assertThat(httpMethod, is(HttpMethod.GET));
+    }
+
+    @Test
+    public void getRequestUrl() {
+        String requestLine = "GET /index.html HTTP/1.1";
+        String requestUrl = HttpRequestUtils.getRequestUrl(requestLine);
+        assertThat(requestUrl, is("/index.html"));
     }
 }
