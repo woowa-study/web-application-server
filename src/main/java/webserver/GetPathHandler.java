@@ -11,15 +11,14 @@ import java.util.Optional;
 public class GetPathHandler implements PathHandler {
     private static final Map<String, PathHandleStrategy> pathHandlersMap = new HashMap<>();
     static {
+        pathHandlersMap.put("", new GetDefaultPathHandler());
         pathHandlersMap.put("/", new GetDefaultPathHandler());
-        pathHandlersMap.put("/index.html", new GetStaticResourceHandler());
-        pathHandlersMap.put("/user/form.html", new GetStaticResourceHandler());
-        pathHandlersMap.put("/user/login.html", new GetStaticResourceHandler());
+        pathHandlersMap.put("default", new GetStaticResourceHandler());
         pathHandlersMap.put("/user/list", new GetShowUserListPathHandler());
     }
 
     @Override
     public PathHandleStrategy getMatchingPathHandleStrategy(String requestUrl) {
-        return Optional.of(this.pathHandlersMap.get(requestUrl)).orElse(this.pathHandlersMap.get(requestUrl));
+        return Optional.ofNullable(this.pathHandlersMap.get(requestUrl)).orElse(this.pathHandlersMap.get(requestUrl));
     }
 }

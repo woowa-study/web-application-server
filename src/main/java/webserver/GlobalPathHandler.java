@@ -15,6 +15,6 @@ public class GlobalPathHandler {
     }
     public PathHandleStrategy getPathHandleStrategy(HttpMethod httpMethod, String requestUrl) throws NoSuchMethodException {
         return Optional.ofNullable(this.pathHandlerMap.get(httpMethod)
-                .getMatchingPathHandleStrategy(requestUrl)).orElseThrow(() -> new NoSuchMethodException("해당하는 경로와 메소드에 맞는 리소스가 없습니다."));
+                .getMatchingPathHandleStrategy(requestUrl)).orElse(pathHandlerMap.get(HttpMethod.GET).getMatchingPathHandleStrategy("default"));
     }
 }
