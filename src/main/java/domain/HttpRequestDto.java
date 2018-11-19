@@ -17,6 +17,7 @@ public class HttpRequestDto {
     private HttpMethod httpMethod;
     private String requestUrl;
     private byte[] body;
+    private String accept;
     private Map<String, String> cookies;
     private Integer contentLength;
     private Map<String, String> data;
@@ -33,6 +34,9 @@ public class HttpRequestDto {
             }
             if(line.contains("Cookie")) {
                 this.cookies = HttpRequestUtils.parseCookies(line);
+            }
+            if(line.contains("text/css")) {
+                this.accept = "text/css";
             }
         }
         if(this.httpMethod == HttpMethod.POST) {
@@ -67,5 +71,9 @@ public class HttpRequestDto {
 
     public Map<String, String> getCookies() {
         return cookies;
+    }
+
+    public String getAccept() {
+        return accept;
     }
 }
