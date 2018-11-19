@@ -1,6 +1,7 @@
 package webserver;
 
 import get.GetDefaultPathHandler;
+import get.GetShowUserListPathHandler;
 import get.GetStaticResourceHandler;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ public class GetPathHandler implements PathHandler {
         pathHandlersMap.put("/index.html", new GetStaticResourceHandler());
         pathHandlersMap.put("/user/form.html", new GetStaticResourceHandler());
         pathHandlersMap.put("/user/login.html", new GetStaticResourceHandler());
+        pathHandlersMap.put("/user/list", new GetShowUserListPathHandler());
     }
 
     @Override
